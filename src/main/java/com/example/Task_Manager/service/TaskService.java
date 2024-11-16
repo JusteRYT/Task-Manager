@@ -43,7 +43,7 @@ public class TaskService {
      * @param id идентификатор задачи
      * @return задача, если найдена
      */
-    public Optional<Task> getTasById(Long id) {
+    public Optional<Task> getTaskById(Long id) {
         return taskRepository.findById(id);
     }
 
@@ -70,7 +70,7 @@ public class TaskService {
     /**
      * Удаляет задачу по идентификатору.
      *
-     * @param id идентификатор задачи
+     * @param task идентификатор задачи
      */
     public void deleteTask(Task task) {
         taskRepository.delete(task);
