@@ -45,4 +45,9 @@ public class UserService {
     public User createUser(User user) {
         return userRepository.save(user);
     }
+
+    public User createUser(String username, String password) {
+        User user = new User(username, password);
+        return userRepository.save(user);
+    }
 }

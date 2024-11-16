@@ -3,6 +3,8 @@ package com.example.Task_Manager.controller;
 import com.example.Task_Manager.model.User;
 import com.example.Task_Manager.service.UserService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -12,6 +14,8 @@ import java.util.Optional;
 public class UserController {
 
     private final UserService userService;
+
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     /**
      * Конструктор для внедрения зависимостей.
@@ -30,7 +34,8 @@ public class UserController {
      */
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
-        User createdUser = userService.createUser(user);
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        User createdUser = userService.createUser(user.getUsername(), encodedPassword);
         return ResponseEntity.ok(createdUser);
     }
 

@@ -21,6 +21,11 @@ import java.util.List;
 @Setter
 public class User {
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     /**
      * Уникальный идентификатор пользователя.
      */
@@ -45,4 +50,8 @@ public class User {
      */
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> tasks;
+
+    public User() {
+
+    }
 }
